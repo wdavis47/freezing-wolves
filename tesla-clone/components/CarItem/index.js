@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
+import { View, Text, ImageBackground, Linking } from "react-native";
 import StyledButton from "../StyledButton";
 import styles from "./styles";
 
@@ -11,7 +11,17 @@ const CarItem = (props) => {
       <View style={styles.titles}>
         <Text style={styles.title}>{name}</Text>
         <Text style={styles.subtitle}>
-          {tagline} <Text style={styles.subtitleCTA}>{taglineCTA}</Text>
+          {tagline}{" "}
+          <Text
+            style={styles.subtitleCTA}
+            onPress={() => {
+              Linking.openURL(
+                "https://www.tesla.com/support/taking-delivery?redirect=no"
+              );
+            }}
+          >
+            {taglineCTA}
+          </Text>
         </Text>
       </View>
       <View style={styles.buttonContainer}>
@@ -19,14 +29,14 @@ const CarItem = (props) => {
           type="primary"
           content={"Custom Order"}
           onPress={() => {
-            console.warn("Custom Order was pressed");
+            Linking.openURL("https://www.tesla.com/models/design#overview");
           }}
         />
         <StyledButton
           type="secondary"
           content={"Existing Inventory"}
           onPress={() => {
-            console.warn("Existing Inventory was pressed");
+            Linking.openURL("https://www.tesla.com/inventory/new/ms");
           }}
         />
       </View>
